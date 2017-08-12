@@ -13,7 +13,7 @@ import java.util.Random;
 
 /**
  *
- * @author thiag
+ * @author thiago
  */
 public class TelaMensageitor extends javax.swing.JFrame {
     public String cliente;
@@ -49,6 +49,10 @@ public class TelaMensageitor extends javax.swing.JFrame {
         BtnGerar = new javax.swing.JButton();
         BtnOcupado = new javax.swing.JRadioButton();
         jSeparator1 = new javax.swing.JSeparator();
+        BtnMsg2 = new javax.swing.JRadioButton();
+        BtnMsg1 = new javax.swing.JRadioButton();
+        BtnRispido = new javax.swing.JRadioButton();
+        jRadioButton1 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mensageitor");
@@ -88,48 +92,81 @@ public class TelaMensageitor extends javax.swing.JFrame {
 
         BtnOcupado.setText("Ocupado");
 
+        BtnMsg2.setText("Mensagem 2");
+
+        BtnMsg1.setText("Mensagem 1");
+
+        BtnRispido.setForeground(new java.awt.Color(255, 0, 0));
+        BtnRispido.setText("Modo RISPIDO");
+
+        jRadioButton1.setText("Copiar com Enter");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.CENTER, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                        .addComponent(jSeparator1)
-                        .addComponent(jLabel1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BtnRispido))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TxtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(BtnMsg2)
+                            .addComponent(BtnMsg1)
                             .addComponent(BtnOcupado))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BtnGerar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(10, 10, 10))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BtnGerar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jRadioButton1, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addGap(6, 6, 6))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TxtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(5, 5, 5)
+                .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TxtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(15, 15, 15)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(BtnOcupado)
-                    .addComponent(BtnGerar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TxtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BtnMsg1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtnMsg2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtnOcupado))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jRadioButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtnGerar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BtnRispido)
                 .addContainerGap())
         );
 
@@ -143,6 +180,7 @@ public class TelaMensageitor extends javax.swing.JFrame {
     //Evento de copiar o texto
     private void BtnGerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGerarActionPerformed
         // Metodo main gerador de mensagem
+        GeradorMsg();
         Copiar();
        
         
@@ -193,50 +231,74 @@ public class TelaMensageitor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnGerar;
+    private javax.swing.JRadioButton BtnMsg1;
+    private javax.swing.JRadioButton BtnMsg2;
     private javax.swing.JRadioButton BtnOcupado;
+    private javax.swing.JRadioButton BtnRispido;
     private javax.swing.JTextField TxtCliente;
     private javax.swing.JTextArea TxtMensagem;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     *
+     */
     public void GeradorMsg() {
         //Objeto hora
         Horario hora = new Horario();
-        Random ale = new Random();
-        int na = ale.nextInt(100);
-        int na1 = ale.nextInt(100);
-        String comb1;
         
-        //Mensagens pre definidas
+        //Objeto gera numero randomico
+        Random ale = new Random();
+        
+        //Variaveis para seleção de mensagens aleatorias 
+        int na1 = ale.nextInt(3) + 1;
+        int na2 = ale.nextInt(3) + 1;
+        String combMensagemOcupado = "";
+        
+        //Mensagens de ocupado pre definidas
         String msgMO1 = ", no momento estou em atendimento";
         String msgMO2 = ", não posso te atender no momento";
+        String msgMO3 = ", estou em um atendimento agora";
         String msgFO1 = ", vou te colocar na fila e assim que possivel entraremos em contato ok? ";
         String msgFO2 = ", mas vou te colocar na fila e um tecnico vai entrar em contato o mais rapido possivel.";
-        //Gerando combinação aleatoria
-        if ((na % 2) == 1  ){
-           comb1 = msgMO1;
+        String msgFO3 = ", mas vou te colocar na fila de espera e um tecnico vai entrar em contato o mais rapido possivel.";
         
-        } else{
-           comb1 = msgMO2;
+        //Selecionando parte central da mensagem
+        switch(na1) {
+            case 1:
+                combMensagemOcupado = msgMO1;
+                break;
+            case 2:
+                combMensagemOcupado = msgMO2;
+                break;
+            case 3:
+                combMensagemOcupado = msgMO3;
         }
-        if ((na1 % 2) == 1  ){
-           comb1 += msgFO1;
         
-        } else{
-           comb1 += msgFO2;
+        //Selecionando parte final da mensagem
+        switch(na2) {
+            case 1:
+                combMensagemOcupado += msgFO1;
+                break;
+            case 2:
+                combMensagemOcupado += msgFO2;
+                break;
+            case 3: 
+                combMensagemOcupado += msgFO3;
+                break;
         }
-        
     
         //Formatando mensagem que que irá ser exibida
-        String mensagem = String.format( "%s %s %s", hora.momento() ,TxtCliente.getText(), comb1);
+        String mensagemOcupado = String.format( "%s %s %s", hora.momento() ,TxtCliente.getText(), combMensagemOcupado);
         
         //Exibindo mensagem
-        TxtMensagem.setText(mensagem);
+        TxtMensagem.setText(mensagemOcupado);
         
         
     }
