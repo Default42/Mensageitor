@@ -5,7 +5,9 @@
  */
 package Classes;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
@@ -15,13 +17,14 @@ import java.util.Locale;
  * @author Thiago
  */
 public class Horario {
-    Locale locale = new Locale("pt","BR");
-    GregorianCalendar calendar = new GregorianCalendar(); 
-    SimpleDateFormat formatador = new SimpleDateFormat("'HH'",locale);
-    String hora = Integer.toString(calendar.getTime());
+    TelaMensageitor mensagem = new TelaMensageitor();
+    DateFormat HoraAtual = new SimpleDateFormat("hh");
+    Calendar horaAtual = HoraAtual.getCalendar();
     
-    if (2 < 12 ){
+    
+    
+    
     
 }
     
-}
+

@@ -10,12 +10,15 @@ package Classes;
  * @author thiag
  */
 public class TelaMensageitor extends javax.swing.JFrame {
+    public String cliente;
 
     /**
      * Creates new form TelaMensageitor
      */
     public TelaMensageitor() {
         initComponents();
+        
+        
     }
 
     /**
@@ -45,6 +48,7 @@ public class TelaMensageitor extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(51, 153, 255));
         jLabel1.setText("Mensageitor");
 
+        TxtCliente.setText(cliente);
         TxtCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TxtClienteActionPerformed(evt);
@@ -124,11 +128,12 @@ public class TelaMensageitor extends javax.swing.JFrame {
 
     private void BtnGerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGerarActionPerformed
         // Metodo main gerador de mensagem
-        String cliente = TxtCliente.getText();
+        Horario hora = new Horario();
         String MensagemDisponivel = ", como posso te ajudar ?";
         String MensagemOcupado = ", no momento estou em atendimento, vou te colocar na fila e entraremos em contato o  mais rapido possivel.";
         
-        TxtMensagem.setText(cliente + MensagemDisponivel);
+        TxtMensagem.setText(cliente + MensagemDisponivel + hora.horaAtual);
+        
         
     }//GEN-LAST:event_BtnGerarActionPerformed
 

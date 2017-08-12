@@ -92,6 +92,11 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="TxtCliente">
+      <Properties>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="cliente" type="code"/>
+        </Property>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TxtClienteActionPerformed"/>
       </Events>
