@@ -9,6 +9,7 @@ import com.sun.glass.events.KeyEvent;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
+import java.util.Random;
 
 /**
  *
@@ -22,6 +23,9 @@ public class TelaMensageitor extends javax.swing.JFrame {
      */
     public TelaMensageitor() {
         initComponents();
+
+        
+        
         
         
     }
@@ -47,9 +51,10 @@ public class TelaMensageitor extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Mensageitor");
         setAlwaysOnTop(true);
 
-        jLabel1.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 3, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 153, 255));
         jLabel1.setText("Mensageitor");
 
@@ -94,7 +99,9 @@ public class TelaMensageitor extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.CENTER)
+                    .addGroup(javax.swing.GroupLayout.Alignment.CENTER, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                        .addComponent(jSeparator1)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -103,11 +110,7 @@ public class TelaMensageitor extends javax.swing.JFrame {
                                 .addComponent(TxtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(BtnOcupado))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BtnGerar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(92, 92, 92)))
+                        .addComponent(BtnGerar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(10, 10, 10))
         );
         layout.setVerticalGroup(
@@ -126,7 +129,7 @@ public class TelaMensageitor extends javax.swing.JFrame {
                     .addComponent(BtnOcupado)
                     .addComponent(BtnGerar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
 
@@ -136,7 +139,8 @@ public class TelaMensageitor extends javax.swing.JFrame {
     private void TxtClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtClienteActionPerformed
-
+     
+    //Evento de copiar o texto
     private void BtnGerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGerarActionPerformed
         // Metodo main gerador de mensagem
         Copiar();
@@ -201,8 +205,11 @@ public class TelaMensageitor extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void GeradorMsg() {
-        int na =(int) ((int) 5 +Math.random() * (10-5));
-        int na1 = (int) ((int) 5 +Math.random() * (10-5));
+        //Objeto hora
+        Horario hora = new Horario();
+        Random ale = new Random();
+        int na = ale.nextInt(100);
+        int na1 = ale.nextInt(100);
         String comb1;
         
         //Mensagens pre definidas
@@ -226,7 +233,7 @@ public class TelaMensageitor extends javax.swing.JFrame {
         
     
         //Formatando mensagem que que irá ser exibida
-        String mensagem = String.format( "Bom dia %s %s" ,TxtCliente.getText(), comb1);
+        String mensagem = String.format( "%s %s %s", hora.momento() ,TxtCliente.getText(), comb1);
         
         //Exibindo mensagem
         TxtMensagem.setText(mensagem);

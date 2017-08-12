@@ -7,9 +7,7 @@ package Classes;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Locale;
 
 /**
@@ -17,14 +15,34 @@ import java.util.Locale;
  * @author Thiago
  */
 public class Horario {
-    TelaMensageitor mensagem = new TelaMensageitor();
-    DateFormat HoraAtual = new SimpleDateFormat("hh");
-    Calendar horaAtual = HoraAtual.getCalendar();
+    
+    String momento(){
+        //variavel que recebe a hora
+        int hora = Integer.parseInt(getDateTime());
+        
+        //Condicional para definir periodo do dia
+        if (hora > 7 && hora < 12){
+            return "Bom dia ";
+        } else if (hora > 12 && hora < 18){
+            return "Boa tarde ";
+        }else {
+            return "Boa noite ";
+        }
+        
+        
+    }
+    int hora = Integer.parseInt(getDateTime());
     
     
     
+   //Metodo que pega o horario do sistema 
+    String getDateTime() { 
+	DateFormat dateFormat = new SimpleDateFormat("HH"); 
+	Date date = new Date(); 
+	return dateFormat.format(date); 
+}
     
     
 }
+ 
     
-
