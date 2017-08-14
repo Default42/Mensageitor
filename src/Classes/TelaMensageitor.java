@@ -6,9 +6,11 @@
 package Classes;
 
 import com.sun.glass.events.KeyEvent;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
+import java.net.URL;
 import java.util.Random;
 
 /**
@@ -23,6 +25,7 @@ public class TelaMensageitor extends javax.swing.JFrame {
      */
     public TelaMensageitor() {
         initComponents();
+        setIcon();
 
         
         
@@ -47,12 +50,11 @@ public class TelaMensageitor extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TxtMensagem = new javax.swing.JTextArea();
         BtnGerar = new javax.swing.JButton();
-        BtnOcupado = new javax.swing.JRadioButton();
         jSeparator1 = new javax.swing.JSeparator();
         BtnMsg2 = new javax.swing.JRadioButton();
         BtnMsg1 = new javax.swing.JRadioButton();
         BtnRispido = new javax.swing.JRadioButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        BtnEnter = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mensageitor");
@@ -90,8 +92,6 @@ public class TelaMensageitor extends javax.swing.JFrame {
             }
         });
 
-        BtnOcupado.setText("Ocupado");
-
         BtnMsg2.setText("Mensagem 2");
 
         BtnMsg1.setText("Mensagem 1");
@@ -99,7 +99,7 @@ public class TelaMensageitor extends javax.swing.JFrame {
         BtnRispido.setForeground(new java.awt.Color(255, 0, 0));
         BtnRispido.setText("Modo RISPIDO");
 
-        jRadioButton1.setText("Copiar com Enter");
+        BtnEnter.setText("Copiar com Enter");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,12 +114,11 @@ public class TelaMensageitor extends javax.swing.JFrame {
                         .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(BtnMsg2)
-                            .addComponent(BtnMsg1)
-                            .addComponent(BtnOcupado))
+                            .addComponent(BtnMsg1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(BtnGerar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jRadioButton1, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addComponent(BtnEnter, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addGap(6, 6, 6))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,7 +145,6 @@ public class TelaMensageitor extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -155,12 +153,10 @@ public class TelaMensageitor extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BtnMsg1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnMsg2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnOcupado))
+                        .addComponent(BtnMsg2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jRadioButton1)
+                        .addGap(0, 54, Short.MAX_VALUE)
+                        .addComponent(BtnEnter)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BtnGerar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -192,6 +188,9 @@ public class TelaMensageitor extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER){
             GeradorMsg();
         }
+        if (BtnEnter.isSelected()){
+            Copiar();
+        }
     }//GEN-LAST:event_TxtClienteKeyPressed
 
     /**
@@ -205,7 +204,7 @@ public class TelaMensageitor extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -230,10 +229,10 @@ public class TelaMensageitor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton BtnEnter;
     private javax.swing.JButton BtnGerar;
     private javax.swing.JRadioButton BtnMsg1;
     private javax.swing.JRadioButton BtnMsg2;
-    private javax.swing.JRadioButton BtnOcupado;
     private javax.swing.JRadioButton BtnRispido;
     private javax.swing.JTextField TxtCliente;
     private javax.swing.JTextArea TxtMensagem;
@@ -241,7 +240,6 @@ public class TelaMensageitor extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
@@ -309,5 +307,8 @@ public class TelaMensageitor extends javax.swing.JFrame {
         StringSelection selection = new StringSelection(text);
         clipboard.setContents(selection, null);
         
+    }
+     private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("mail.png")));
     }
 }
