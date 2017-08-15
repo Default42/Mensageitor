@@ -293,7 +293,7 @@ public class TelaMensageitor extends javax.swing.JFrame {
         }
     
         //Formatando mensagem que que irá ser exibida
-        String mensagemOcupado = String.format( "%s %s %s", hora.momento() ,TxtCliente.getText(), combMensagemOcupado);
+        String mensagemOcupado = String.format( "%s%s%s", hora.momento() ,TxtCliente.getText(), combMensagemOcupado);
         
         //Exibindo mensagem
         TxtMensagem.setText(mensagemOcupado);

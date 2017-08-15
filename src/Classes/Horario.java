@@ -23,7 +23,7 @@ public class Horario {
         //Condicional para definir periodo do dia
         if (hora > 7 && hora < 12){
             return "Bom dia ";
-        } else if (hora > 12 && hora < 18){
+        } else if (hora >= 12 && hora < 18){
             return "Boa tarde ";
         }else {
             return "Boa noite ";
