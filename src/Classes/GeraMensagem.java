@@ -21,7 +21,6 @@ public class GeraMensagem {
         //Variaveis para seleção de mensagens aleatorias 
         int na1 = ale.nextInt(3) + 1;
         int na2 = ale.nextInt(3) + 1;  
-        public String cliente = tela.getCliente();
         
 
     /**
@@ -36,9 +35,9 @@ public class GeraMensagem {
         String msgMO1 = ", no momento estou em atendimento";
         String msgMO2 = ", não posso te atender no momento";
         String msgMO3 = ", estou em um atendimento agora";
-        String msgFO1 = ", vou te colocar na fila e assim que possivel entraremos em contato ok? ";
-        String msgFO2 = ", mas vou te colocar na fila e um tecnico vai entrar em contato o mais rapido possivel.";
-        String msgFO3 = ", mas vou te colocar na fila de espera e um tecnico vai entrar em contato o mais rapido possivel.";
+        String msgFO1 = ", me fale sua solicitação que vou te colocar na fila e assim que possivel entraremos em contato ok? ";
+        String msgFO2 = ", mas me fale sua solicitação que vou te colocar na fila e um tecnico vai entrar em contato o mais rapido possivel.";
+        String msgFO3 = ", mas me fale sua solicitação que vou te colocar na fila de espera e um tecnico vai entrar em contato o mais rapido possivel.";
         
         //Selecionando parte central da mensagem
         switch(na1){
@@ -64,7 +63,8 @@ public class GeraMensagem {
                 combMensagemOcupado += msgFO3;
                 break;
         }
-        String mensagemOcupado = String.format( "%s%s%s", hora.momento() , , combMensagemOcupado);
+        String mensagemOcupado = String.format( "%s%s%s", hora.momento() , Txtcliente.getText(), combMensagemOcupado);
         return mensagemOcupado;
     }
+
 }

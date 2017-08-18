@@ -231,10 +231,8 @@ public class TelaMensageitor extends javax.swing.JFrame {
     private javax.swing.JButton BtnGerar;
     private javax.swing.JRadioButton BtnMsg1;
     private javax.swing.JRadioButton BtnMsg2;
-    private javax.swing.JTextField TxtCliente;
+    public javax.swing.JTextField TxtCliente;
     private javax.swing.JTextArea TxtMensagem;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JRadioButton jRadioButton1;
@@ -264,8 +262,7 @@ public class TelaMensageitor extends javax.swing.JFrame {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("mail.png")));
     }
     public String getCliente(){
-        String cliente = TxtCliente.getText();
-        return cliente;
+        return TxtCliente.getText();
     }    
 
 }
