@@ -12,6 +12,7 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.net.URL;
 import java.util.Random;
+import javax.swing.ButtonGroup;
 
 /**
  *
@@ -19,6 +20,8 @@ import java.util.Random;
  */
 public class TelaMensageitor extends javax.swing.JFrame {
     public String cliente;
+    private ButtonGroup buttonGroup2;
+    private ButtonGroup buttonGroup1;
 
     /**
      * Creates new form TelaMensageitor
@@ -97,7 +100,7 @@ public class TelaMensageitor extends javax.swing.JFrame {
         BtnMsg1.setText("Mensagem 1");
 
         BtnEnter.setSelected(true);
-        BtnEnter.setText("Copiar com Enter");
+        BtnEnter.setText("Usar o enter para copiar");
 
         jRadioButton1.setText("Conexão");
 
@@ -231,8 +234,9 @@ public class TelaMensageitor extends javax.swing.JFrame {
     private javax.swing.JButton BtnGerar;
     private javax.swing.JRadioButton BtnMsg1;
     private javax.swing.JRadioButton BtnMsg2;
-    public javax.swing.JTextField TxtCliente;
+    private javax.swing.JTextField TxtCliente;
     private javax.swing.JTextArea TxtMensagem;
+
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JRadioButton jRadioButton1;
@@ -246,7 +250,7 @@ public class TelaMensageitor extends javax.swing.JFrame {
     public void GeradorMsg() {       
         //Exibindo mensagem
         GeraMensagem mensagem = new GeraMensagem();
-        TxtMensagem.setText(mensagem.msgOcupado());
+        TxtMensagem.setText(mensagem.msgOcupado(TxtCliente.getText()));
         
         
     }

@@ -27,7 +27,7 @@ public class GeraMensagem {
      * metodo que retorna a mensagem de ocupado
      * @return 
      */
-    public String msgOcupado(){
+    public String msgOcupado(String cliente){
 
         String combMensagemOcupado = "";
         
@@ -63,7 +63,7 @@ public class GeraMensagem {
                 combMensagemOcupado += msgFO3;
                 break;
         }
-        String mensagemOcupado = String.format( "%s%s%s", hora.momento() , Txtcliente.getText(), combMensagemOcupado);
+        String mensagemOcupado = String.format( "%s%s%s", hora.momento() , cliente, combMensagemOcupado);
         return mensagemOcupado;
     }
 

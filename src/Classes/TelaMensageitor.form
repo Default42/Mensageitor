@@ -181,7 +181,7 @@
     <Component class="javax.swing.JRadioButton" name="BtnEnter">
       <Properties>
         <Property name="selected" type="boolean" value="true"/>
-        <Property name="text" type="java.lang.String" value="Copiar com Enter"/>
+        <Property name="text" type="java.lang.String" value="Usar o enter para copiar"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jRadioButton1">
