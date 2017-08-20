@@ -21,6 +21,7 @@ public class GeraMensagem {
         //Variaveis para seleção de mensagens aleatorias 
         int na1 = ale.nextInt(3) + 1;
         int na2 = ale.nextInt(3) + 1;  
+        int na3 = ale.nextInt(2) + 1;  
         
 
     /**
@@ -65,6 +66,33 @@ public class GeraMensagem {
         }
         String mensagemOcupado = String.format( "%s%s%s", hora.momento() , cliente, combMensagemOcupado);
         return mensagemOcupado;
+    }
+    
+    public String msgDisponivel(String cliente){
+        String msgD1 = ", Como posso ajudar?";
+        String mensagemDisponivel = String.format( "%s%s%s", hora.momento() , cliente, msgD1);
+            return mensagemDisponivel;
+        
+    }
+    
+    public String msgConexao(String cliente){
+        
+        //Mensagens pré definidas
+        String msgC1 = ", pode me passar seu ammy ou anydesk ?";
+        String msgC2 = ", me passa seu ammy ou anydesk por favor";
+        
+        String combMensagemConexao = "";
+        
+        switch(na3){
+            case 1:
+                combMensagemConexao = msgC1;
+                break;
+            case 2:
+                combMensagemConexao = msgC2;
+                break;
+        }
+        String mensagemConexao = String.format( "%s%s", cliente, combMensagemConexao);     
+            return mensagemConexao;
     }
 
 }
