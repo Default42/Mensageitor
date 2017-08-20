@@ -61,6 +61,7 @@ public class TelaMensageitor extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mensageitor");
         setAlwaysOnTop(true);
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Calibri", 3, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 153, 255));
@@ -95,11 +96,21 @@ public class TelaMensageitor extends javax.swing.JFrame {
         });
 
         BtnDisponivel.setText("Mensagem disponivel");
+        BtnDisponivel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnDisponivelActionPerformed(evt);
+            }
+        });
 
         BtnEnter.setSelected(true);
         BtnEnter.setText("Usar o enter para copiar");
 
         BtnConexao.setText("Conexão");
+        BtnConexao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnConexaoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,20 +134,18 @@ public class TelaMensageitor extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jSeparator1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TxtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(105, 105, 105)
-                                .addComponent(jLabel1)))
-                        .addGap(0, 0, 0)))
+                        .addContainerGap()
+                        .addComponent(jSeparator1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TxtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(105, 105, 105))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,6 +196,20 @@ public class TelaMensageitor extends javax.swing.JFrame {
             Copiar();
         }
     }//GEN-LAST:event_TxtClienteKeyPressed
+
+    private void BtnConexaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConexaoActionPerformed
+        // TODO add your handling code here:
+        if(BtnConexao.isSelected()){
+             BtnDisponivel.setSelected(false);
+        }
+    }//GEN-LAST:event_BtnConexaoActionPerformed
+
+    private void BtnDisponivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDisponivelActionPerformed
+        // TODO add your handling code here:
+        if(BtnDisponivel.isSelected()){
+            BtnConexao.setSelected(false);
+        }
+    }//GEN-LAST:event_BtnDisponivelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -250,8 +273,6 @@ public class TelaMensageitor extends javax.swing.JFrame {
         }else{
             TxtMensagem.setText(mensagem.msgOcupado(TxtCliente.getText()));
         }
-        
-        
         
     }
     
