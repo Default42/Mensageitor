@@ -10,9 +10,14 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -29,11 +34,6 @@ public class TelaMensageitor extends javax.swing.JFrame {
     public TelaMensageitor() {
         initComponents();
         setIcon();
-
-        
-        
-        
-        
     }
 
     /**
@@ -45,55 +45,32 @@ public class TelaMensageitor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFileChooser1 = new javax.swing.JFileChooser();
         jTabbedPane4 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         TxtCliente = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         BtnCopiar = new javax.swing.JButton();
-        BtnDisponivel = new javax.swing.JRadioButton();
-        BtnEnter = new javax.swing.JRadioButton();
-        BtnConexao = new javax.swing.JRadioButton();
         jSeparator2 = new javax.swing.JSeparator();
-        TxtMensagem = new javax.swing.JTextArea();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        BtnBancos = new javax.swing.JCheckBox();
-        BtnPreAtu = new javax.swing.JCheckBox();
-        BtnAtuazador = new javax.swing.JCheckBox();
-        BtnPosAtu = new javax.swing.JCheckBox();
-        BtnRestore = new javax.swing.JCheckBox();
-        BtnRedeUsers = new javax.swing.JCheckBox();
-        jLabel4 = new javax.swing.JLabel();
-        BtnRelatorios = new javax.swing.JCheckBox();
-        BtnExe = new javax.swing.JCheckBox();
-        BtnTrocaExe = new javax.swing.JCheckBox();
+        TxtMensagemFinal = new javax.swing.JTextArea();
+        cbMensagensSelecao = new javax.swing.JComboBox<>();
+        jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TxtMensagemAtu = new javax.swing.JTextArea();
-        BtnUpdater = new javax.swing.JCheckBox();
-        BtnGerarAtu = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jSeparator3 = new javax.swing.JSeparator();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jCheckBox6 = new javax.swing.JCheckBox();
-        jCheckBox7 = new javax.swing.JCheckBox();
-        jCheckBox8 = new javax.swing.JCheckBox();
-        jCheckBox9 = new javax.swing.JCheckBox();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        BtnMensagemInsta = new javax.swing.JTextArea();
-        BtnGerarInsta = new javax.swing.JButton();
+        txtMensagem = new javax.swing.JTextArea();
+        cadastraMensagem = new javax.swing.JToggleButton();
+        rbEnterCopiar = new javax.swing.JRadioButton();
+        cbMensagensAlteracao = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Auxiazeitor");
-        setAlwaysOnTop(true);
+        setTitle("Mensageitor");
         setResizable(false);
+
+        jTabbedPane4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabbedPane4MouseClicked(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Calibri", 3, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 153, 255));
@@ -116,324 +93,120 @@ public class TelaMensageitor extends javax.swing.JFrame {
             }
         });
 
-        BtnDisponivel.setText("Mensagem disponivel");
-        BtnDisponivel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnDisponivelActionPerformed(evt);
-            }
-        });
+        TxtMensagemFinal.setColumns(20);
+        TxtMensagemFinal.setLineWrap(true);
+        TxtMensagemFinal.setRows(5);
+        TxtMensagemFinal.setMaximumSize(new java.awt.Dimension(164, 94));
 
-        BtnEnter.setSelected(true);
-        BtnEnter.setText("Usar o enter para copiar");
-
-        BtnConexao.setText("Conexão");
-        BtnConexao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnConexaoActionPerformed(evt);
-            }
-        });
-
-        TxtMensagem.setColumns(20);
-        TxtMensagem.setLineWrap(true);
-        TxtMensagem.setRows(5);
-        TxtMensagem.setMaximumSize(new java.awt.Dimension(164, 94));
+        cbMensagensSelecao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mensagem 1", "Mensagem 2", "Mensagem 3", "Mensagem 4", "Mensagem 5" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(134, 134, 134)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TxtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(TxtMensagemFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(BtnConexao)
-                                    .addComponent(BtnDisponivel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(BtnEnter)
-                                    .addComponent(BtnCopiar, javax.swing.GroupLayout.Alignment.TRAILING)))
                             .addComponent(jSeparator2)
-                            .addComponent(TxtMensagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(TxtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cbMensagensSelecao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BtnCopiar)))))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(128, 128, 128))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addGap(5, 5, 5)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(TxtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(BtnCopiar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnEnter))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(BtnDisponivel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BtnConexao)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TxtMensagem, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbMensagensSelecao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnCopiar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(TxtMensagemFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane4.addTab("Mensageitor", jPanel1);
 
-        jLabel3.setFont(new java.awt.Font("Calibri", 3, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 153, 255));
-        jLabel3.setText("Atualizaçãozeitor");
+        txtMensagem.setColumns(20);
+        txtMensagem.setLineWrap(true);
+        txtMensagem.setRows(5);
+        txtMensagem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtMensagemKeyPressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(txtMensagem);
 
-        BtnBancos.setText("Bancos");
-        BtnBancos.addActionListener(new java.awt.event.ActionListener() {
+        cadastraMensagem.setText("Salvar");
+        cadastraMensagem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnBancosActionPerformed(evt);
+                cadastraMensagemActionPerformed(evt);
             }
         });
 
-        BtnPreAtu.setText("Doc pré atualização");
+        rbEnterCopiar.setSelected(true);
+        rbEnterCopiar.setText("Usar o enter para copiar");
 
-        BtnAtuazador.setText("Atualizador");
+        cbMensagensAlteracao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mensagem 1", "Mensagem 2", "Mensagem 3", "Mensagem 4", "Mensagem 5" }));
+        cbMensagensAlteracao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbMensagensAlteracaoActionPerformed(evt);
+            }
+        });
 
-        BtnPosAtu.setText("Doc pós atualização");
-
-        BtnRestore.setText("Backup Restore");
-
-        BtnRedeUsers.setText("Redefini os usuarios");
-
-        jLabel4.setText("Backups:");
-
-        BtnRelatorios.setText("Relatorios");
-
-        BtnExe.setText(".exe");
-
-        BtnTrocaExe.setText("Trocar .exe");
-
-        TxtMensagemAtu.setColumns(20);
-        TxtMensagemAtu.setLineWrap(true);
-        TxtMensagemAtu.setRows(5);
-        jScrollPane1.setViewportView(TxtMensagemAtu);
-
-        BtnUpdater.setText("Updater");
-
-        BtnGerarAtu.setText("Gerar");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSeparator1))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(cbMensagensAlteracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cadastraMensagem))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(rbEnterCopiar)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(BtnPreAtu))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(BtnRelatorios)
-                                    .addComponent(BtnBancos)
-                                    .addComponent(BtnExe)))))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(BtnAtuazador)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(BtnPosAtu)
-                            .addComponent(BtnRestore)
-                            .addComponent(BtnUpdater)
-                            .addComponent(BtnTrocaExe)
-                            .addComponent(BtnRedeUsers))
-                        .addGap(16, 16, 16))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(BtnGerarAtu)
-                        .addContainerGap())))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(109, 109, 109)
-                .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel3)
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(rbEnterCopiar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cadastraMensagem, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cbMensagensAlteracao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnBancos)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnRelatorios)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnExe)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnPreAtu)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnAtuazador))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(BtnUpdater)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnPosAtu)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnRestore)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnRedeUsers)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnTrocaExe)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BtnGerarAtu)))
-                .addGap(6, 6, 6)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Atualização", jPanel3);
-
-        jLabel5.setFont(new java.awt.Font("Calibri", 3, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 153, 255));
-        jLabel5.setText("Instalaçãozeitor");
-
-        jCheckBox1.setText("Firebird");
-
-        jCheckBox2.setText("IBO");
-
-        jCheckBox3.setText("BDE");
-        jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox3ActionPerformed(evt);
-            }
-        });
-
-        jCheckBox4.setText("Arquivos + dll");
-        jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox4ActionPerformed(evt);
-            }
-        });
-
-        jCheckBox5.setText("Caminhos");
-
-        jCheckBox6.setText("Nota fiscal");
-
-        jCheckBox7.setText("Criptografia");
-
-        jCheckBox8.setText("Relatorios");
-
-        jCheckBox9.setText("Teste");
-
-        BtnMensagemInsta.setColumns(20);
-        BtnMensagemInsta.setLineWrap(true);
-        BtnMensagemInsta.setRows(5);
-        jScrollPane2.setViewportView(BtnMensagemInsta);
-
-        BtnGerarInsta.setText("Gerar");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox6)
-                    .addComponent(jCheckBox4)
-                    .addComponent(jCheckBox3)
-                    .addComponent(jCheckBox2)
-                    .addComponent(jCheckBox1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox9)
-                            .addComponent(jCheckBox8)
-                            .addComponent(jCheckBox7)
-                            .addComponent(jCheckBox5))
-                        .addGap(39, 39, 39))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(BtnGerarInsta)
-                        .addContainerGap())))
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(115, 115, 115)
-                .addComponent(jLabel5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jScrollPane2))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jSeparator3)))
-                .addContainerGap())
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox2)
-                    .addComponent(jCheckBox7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox3)
-                    .addComponent(jCheckBox8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox4)
-                    .addComponent(jCheckBox9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox6)
-                    .addComponent(BtnGerarInsta))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("instalação", jPanel4);
-
-        jTabbedPane4.addTab("O.Seitor", jTabbedPane1);
+        jTabbedPane4.addTab("Configuração", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -449,47 +222,41 @@ public class TelaMensageitor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnConexaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConexaoActionPerformed
-        // TODO add your handling code here:
-        if(BtnConexao.isSelected()){
-            BtnDisponivel.setSelected(false);
-        }
-    }//GEN-LAST:event_BtnConexaoActionPerformed
-
-    private void BtnDisponivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDisponivelActionPerformed
-        // TODO add your handling code here:
-        if(BtnDisponivel.isSelected()){
-            BtnConexao.setSelected(false);
-        }
-    }//GEN-LAST:event_BtnDisponivelActionPerformed
-
     private void BtnCopiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCopiarActionPerformed
-        // TODO add your handling code here:
-        GeradorMsg();
+
+        Mensagem mensagem = new Mensagem((String)cbMensagensSelecao.getSelectedItem());
+        TxtMensagemFinal.setText(mensagem.geraMensagem(TxtCliente.getText()));
         Copiar();
+        
     }//GEN-LAST:event_BtnCopiarActionPerformed
 
     private void TxtClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtClienteKeyPressed
-        // TODO add your handling code here:
+
         if (evt.getKeyCode() == KeyEvent.VK_ENTER){
-            GeradorMsg();
+            Mensagem mensagem = new Mensagem((String)cbMensagensSelecao.getSelectedItem());
+            TxtMensagemFinal.setText(mensagem.geraMensagem(TxtCliente.getText()));
         }
-        if (BtnEnter.isSelected()){
+        if (rbEnterCopiar.isSelected()){
             Copiar();
         }
     }//GEN-LAST:event_TxtClienteKeyPressed
 
-    private void BtnBancosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBancosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnBancosActionPerformed
+    private void cadastraMensagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastraMensagemActionPerformed
+        new Mensagem().cadastraMensagem(txtMensagem.getText(),(String) cbMensagensAlteracao.getSelectedItem());
+    }//GEN-LAST:event_cadastraMensagemActionPerformed
 
-    private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
+    private void txtMensagemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMensagemKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox4ActionPerformed
+    }//GEN-LAST:event_txtMensagemKeyPressed
 
-    private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox3ActionPerformed
+    private void jTabbedPane4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane4MouseClicked
+        txtMensagem.setText(new Mensagem((String) cbMensagensAlteracao.getSelectedItem()).getMensagem());
+    }//GEN-LAST:event_jTabbedPane4MouseClicked
+
+    private void cbMensagensAlteracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMensagensAlteracaoActionPerformed
+        Mensagem mensagem = new Mensagem((String)cbMensagensAlteracao.getSelectedItem());
+        txtMensagem.setText(mensagem.getMensagem());
+    }//GEN-LAST:event_cbMensagensAlteracaoActionPerformed
 
     
     /**
@@ -519,81 +286,39 @@ public class TelaMensageitor extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Criando e deixando o form visivel */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TelaMensageitor().setVisible(true);
+                
             }
         });
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox BtnAtuazador;
-    private javax.swing.JCheckBox BtnBancos;
-    private javax.swing.JRadioButton BtnConexao;
     private javax.swing.JButton BtnCopiar;
-    private javax.swing.JRadioButton BtnDisponivel;
-    private javax.swing.JRadioButton BtnEnter;
-    private javax.swing.JCheckBox BtnExe;
-    private javax.swing.JButton BtnGerarAtu;
-    private javax.swing.JButton BtnGerarInsta;
-    private javax.swing.JTextArea BtnMensagemInsta;
-    private javax.swing.JCheckBox BtnPosAtu;
-    private javax.swing.JCheckBox BtnPreAtu;
-    private javax.swing.JCheckBox BtnRedeUsers;
-    private javax.swing.JCheckBox BtnRelatorios;
-    private javax.swing.JCheckBox BtnRestore;
-    private javax.swing.JCheckBox BtnTrocaExe;
-    private javax.swing.JCheckBox BtnUpdater;
     private javax.swing.JTextField TxtCliente;
-    private javax.swing.JTextArea TxtMensagem;
-    private javax.swing.JTextArea TxtMensagemAtu;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox6;
-    private javax.swing.JCheckBox jCheckBox7;
-    private javax.swing.JCheckBox jCheckBox8;
-    private javax.swing.JCheckBox jCheckBox9;
+    private javax.swing.JTextArea TxtMensagemFinal;
+    private javax.swing.JToggleButton cadastraMensagem;
+    private javax.swing.JComboBox<String> cbMensagensAlteracao;
+    private javax.swing.JComboBox<String> cbMensagensSelecao;
+    private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane4;
+    private javax.swing.JRadioButton rbEnterCopiar;
+    private javax.swing.JTextArea txtMensagem;
     // End of variables declaration//GEN-END:variables
 
-    /**
-     *
-     */
-    public void GeradorMsg() {       
-        //Exibindo mensagem
-        GeraMensagem mensagem = new GeraMensagem();
-        if (BtnDisponivel.isSelected()){
-            TxtMensagem.setText(mensagem.msgDisponivel(TxtCliente.getText()));
-        }else if(BtnConexao.isSelected()){
-            TxtMensagem.setText(mensagem.msgConexao(TxtCliente.getText()));
-            
-        }else{
-            TxtMensagem.setText(mensagem.msgOcupado(TxtCliente.getText()));
-        }
-        
-    }
-    
+
     public void Copiar(){
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-        String text = TxtMensagem.getText();
+        String text = TxtMensagemFinal.getText();
         StringSelection selection = new StringSelection(text);
         clipboard.setContents(selection, null);
         

@@ -8,34 +8,28 @@ package Classes;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 /**
  *
  * @author Thiago
  */
 public class Horario {
-    
     String momento(){
         //variavel que recebe a hora
         int hora = Integer.parseInt(getDateTime());
         
         //Condicional para definir periodo do dia
         if (hora >= 7 && hora < 12){
-            return "Bom dia ";
+            return "bom dia";
         } else if (hora >= 12 && hora < 18){
-            return "Boa tarde ";
+            return "boa tarde";
         }else {
-            return "Boa noite ";
+            return "boa noite";
         }
         
         
     }
-    int hora = Integer.parseInt(getDateTime());
-    
-    
-    
-   //Metodo que pega o horario do sistema 
+   
     String getDateTime() { 
 	DateFormat dateFormat = new SimpleDateFormat("HH"); 
 	Date date = new Date(); 
