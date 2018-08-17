@@ -18,6 +18,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
+import java.io.*;
+import java.util.Scanner;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.Files;
 
 /**
  *
@@ -61,11 +66,34 @@ public class TelaMensageitor extends javax.swing.JFrame {
         cadastraMensagem = new javax.swing.JToggleButton();
         rbEnterCopiar = new javax.swing.JRadioButton();
         cbMensagensAlteracao = new javax.swing.JComboBox<>();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        cbSistema = new javax.swing.JComboBox<>();
+        txtEmpresa = new javax.swing.JTextField();
+        txtNumero = new javax.swing.JTextField();
+        cbSituacao = new javax.swing.JComboBox<>();
+        btnCopiarClarice = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtMensagemClarice = new javax.swing.JTextArea();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        btnAbrirArquivo = new javax.swing.JButton();
+        txtNomeEmpresa = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtACaminhoneitor = new javax.swing.JTextArea();
+        jLabel11 = new javax.swing.JLabel();
+        txtCaminhoDosCaminhos = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mensageitor");
         setResizable(false);
 
+        jTabbedPane4.setForeground(new java.awt.Color(0, 153, 204));
         jTabbedPane4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTabbedPane4MouseClicked(evt);
@@ -76,6 +104,11 @@ public class TelaMensageitor extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(51, 153, 255));
         jLabel1.setText("Mensageitor");
 
+        TxtCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxtClienteActionPerformed(evt);
+            }
+        });
         TxtCliente.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TxtClienteKeyPressed(evt);
@@ -99,6 +132,11 @@ public class TelaMensageitor extends javax.swing.JFrame {
         TxtMensagemFinal.setMaximumSize(new java.awt.Dimension(164, 94));
 
         cbMensagensSelecao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mensagem 1", "Mensagem 2", "Mensagem 3", "Mensagem 4", "Mensagem 5" }));
+        cbMensagensSelecao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbMensagensSelecaoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -110,7 +148,6 @@ public class TelaMensageitor extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TxtMensagemFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,7 +160,8 @@ public class TelaMensageitor extends javax.swing.JFrame {
                                         .addComponent(TxtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(cbMensagensSelecao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(BtnCopiar)))))
+                                .addComponent(BtnCopiar))))
+                    .addComponent(TxtMensagemFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -182,7 +220,7 @@ public class TelaMensageitor extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(cbMensagensAlteracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -195,9 +233,9 @@ public class TelaMensageitor extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(16, 16, 16)
                 .addComponent(rbEnterCopiar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cadastraMensagem, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(cbMensagensAlteracao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -208,15 +246,187 @@ public class TelaMensageitor extends javax.swing.JFrame {
 
         jTabbedPane4.addTab("Configuração", jPanel2);
 
+        jLabel3.setBackground(new java.awt.Color(204, 255, 204));
+        jLabel3.setFont(new java.awt.Font("Calibri", 3, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(51, 153, 255));
+        jLabel3.setText("Solicitação de Criptografia");
+
+        jLabel4.setText("Empresa:");
+
+        jLabel5.setText("Situação da máquina:");
+
+        jLabel6.setText("Sistema:");
+
+        jLabel7.setText("Número:");
+
+        cbSistema.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SIDI\t", "FINANCE", "REPRES", "INJET", "FAP" }));
+
+        txtNumero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNumeroActionPerformed(evt);
+            }
+        });
+
+        cbSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Máquina Formatada", "Nova Licença", " ", " " }));
+
+        btnCopiarClarice.setText("Copiar");
+        btnCopiarClarice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCopiarClariceActionPerformed(evt);
+            }
+        });
+
+        txtMensagemClarice.setColumns(20);
+        txtMensagemClarice.setLineWrap(true);
+        txtMensagemClarice.setRows(5);
+        jScrollPane2.setViewportView(txtMensagemClarice);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(81, 81, 81)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cbSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtNumero, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnCopiarClarice)))))
+                .addGap(15, 15, 15))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel3)
+                .addGap(20, 20, 20)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(txtEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addComponent(cbSistema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCopiarClarice))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
+        );
+
+        jTabbedPane4.addTab("Clarice", jPanel3);
+
+        jLabel8.setFont(new java.awt.Font("Calibri", 3, 24)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(51, 0, 51));
+        jLabel8.setText("Caminhoneitor");
+
+        jLabel9.setText("Empresa:");
+
+        btnAbrirArquivo.setText("Abrir arquivo");
+        btnAbrirArquivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrirArquivoActionPerformed(evt);
+            }
+        });
+
+        txtNomeEmpresa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomeEmpresaActionPerformed(evt);
+            }
+        });
+
+        txtACaminhoneitor.setColumns(20);
+        txtACaminhoneitor.setRows(5);
+        jScrollPane3.setViewportView(txtACaminhoneitor);
+
+        jLabel11.setText("Caminho dos caminhos:");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(125, 125, 125)
+                .addComponent(jLabel8)
+                .addGap(38, 183, Short.MAX_VALUE))
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCaminhoDosCaminhos, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNomeEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAbrirArquivo)
+                        .addGap(65, 65, 65))))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(txtCaminhoDosCaminhos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNomeEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(btnAbrirArquivo))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jTabbedPane4.addTab("Caminhoneitor", jPanel4);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane4)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane4)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane4)
+                .addContainerGap())
         );
 
         pack();
@@ -257,6 +467,47 @@ public class TelaMensageitor extends javax.swing.JFrame {
         Mensagem mensagem = new Mensagem((String)cbMensagensAlteracao.getSelectedItem());
         txtMensagem.setText(mensagem.getMensagem());
     }//GEN-LAST:event_cbMensagensAlteracaoActionPerformed
+
+    private void TxtClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtClienteActionPerformed
+
+    private void cbMensagensSelecaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMensagensSelecaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbMensagensSelecaoActionPerformed
+
+    /*
+    *@autor Newton
+    */
+    private void txtNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroActionPerformed
+      String sistema = "";
+        String situacao = "";
+        String numero = txtNumero.getText();
+        String empresa = txtEmpresa.getText();
+        situacao = cbSituacao.getSelectedItem().toString();
+        sistema = cbSistema.getSelectedItem().toString();
+        txtMensagemClarice.setText("Clarice tudo Jóia contigo?"
+                + " Gostaria da criptografia da empresa " + empresa+ ", "+ situacao +", sistema "+sistema+", número: "+numero+",  por gentileza");
+        
+    }//GEN-LAST:event_txtNumeroActionPerformed
+
+    private void txtNomeEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeEmpresaActionPerformed
+        // TODO add your handling code here:
+               encontraCaminho();
+    }//GEN-LAST:event_txtNomeEmpresaActionPerformed
+
+    private void btnAbrirArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirArquivoActionPerformed
+        // TODO add your handling code here:
+               encontraCaminho();
+    }//GEN-LAST:event_btnAbrirArquivoActionPerformed
+
+    private void btnCopiarClariceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCopiarClariceActionPerformed
+        // TODO add your handling code here:
+                Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        String text = txtMensagemClarice.getText();
+        StringSelection selection = new StringSelection(text);
+        clipboard.setContents(selection, null);
+    }//GEN-LAST:event_btnCopiarClariceActionPerformed
 
     
     /**
@@ -300,19 +551,41 @@ public class TelaMensageitor extends javax.swing.JFrame {
     private javax.swing.JButton BtnCopiar;
     private javax.swing.JTextField TxtCliente;
     private javax.swing.JTextArea TxtMensagemFinal;
+    private javax.swing.JButton btnAbrirArquivo;
+    private javax.swing.JButton btnCopiarClarice;
     private javax.swing.JToggleButton cadastraMensagem;
     private javax.swing.JComboBox<String> cbMensagensAlteracao;
     private javax.swing.JComboBox<String> cbMensagensSelecao;
+    private javax.swing.JComboBox<String> cbSistema;
+    public static javax.swing.JComboBox<String> cbSituacao;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane4;
     private javax.swing.JRadioButton rbEnterCopiar;
+    private javax.swing.JTextArea txtACaminhoneitor;
+    private javax.swing.JTextField txtCaminhoDosCaminhos;
+    private javax.swing.JTextField txtEmpresa;
     private javax.swing.JTextArea txtMensagem;
+    private javax.swing.JTextArea txtMensagemClarice;
+    private javax.swing.JTextField txtNomeEmpresa;
+    private javax.swing.JTextField txtNumero;
     // End of variables declaration//GEN-END:variables
 
 
@@ -323,6 +596,19 @@ public class TelaMensageitor extends javax.swing.JFrame {
         clipboard.setContents(selection, null);
         
     }
+    public void encontraCaminho(){
+   String nomeEmpresa = txtNomeEmpresa.getText();
+        String caminhoTxt = txtCaminhoDosCaminhos.getText();
+        caminhoTxt += nomeEmpresa+"/Caminhos.txt";
+       Path caminho = Paths.get(caminhoTxt);
+       try{
+       byte[] texto = Files.readAllBytes(caminho);
+       String leitura = new String(texto);
+       txtACaminhoneitor.setText(leitura);
+        }catch(Exception erro){
+        }
+        System.out.println(caminhoTxt);
+}
      private void setIcon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("mail.png")));
     }
